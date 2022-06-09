@@ -22,7 +22,7 @@ client.cooldowns = new Discord.Collection();
 client.aliases = new Discord.Collection();
 mongoose
   .connect(
-    `mongodb+srv://CinnabarBot:${process.env.MONGODB_PASSWORD}@cinnabarbot.u8berh2.mongodb.net/?retryWrites=true&w=majority`
+    process.env.MONGODB_URL
   )
   .then(() => {
     console.log("Mongoose :: Connected to database");
