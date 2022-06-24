@@ -43,7 +43,7 @@ module.exports = {
       const commands = await client.commands;
       let emx = new MessageEmbed()
         .setDescription("Commands")
-        .setColor(.color)
+        .setColor(color)
         .setFooter(`Requested by ${message.author.tag}`)
         .setTimestamp();
 
