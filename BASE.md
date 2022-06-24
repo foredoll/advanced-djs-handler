@@ -18,7 +18,7 @@ module.exports = {
   nsfw: false,
   cooldown: '2s', 
   category: "",
-  execute(client, message, args, prefix) {
+  execute(client, message, args, prefix, color) {
     //your code here...
   }
 }
