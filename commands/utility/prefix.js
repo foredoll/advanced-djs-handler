@@ -1,6 +1,5 @@
 const prefixSchema = require("../../models/prefix");
 const { MessageEmbed } = require("discord.js");
-const config = require("../../config.json");
 module.exports = {
   name: "prefix",
   aliases: [],
@@ -15,12 +14,12 @@ module.exports = {
   disabled: false,
   nsfw: false,
   cooldown: "10s",
-  async execute(client, message, args) {
+  async execute(client, message, args, color) {
     const res = await args.join(" ");
     if (!res) {
       const ask = new MessageEmbed()
         .setTitle("Confirmation")
-        .setColor(config.color)
+        .setColor(color)
         .setDescription("Are you sure that you want to reset the prefix?")
         .setTimestamp()
         .setFooter(`Requested by ${message.author.tag}`);
@@ -50,7 +49,7 @@ module.exports = {
                 )
                 .setFooter(`Requested by ${message.author.tag}`)
                 .setTimestamp()
-                .setColor(config.color);
+                .setColor(color);
               return message.reply(prefixEmbed);
             } else if(reaction.emoji.name = "👎") {
               msg.delete();
@@ -59,7 +58,7 @@ module.exports = {
                 .setDescription(`The process has been canceled.`)
                 .setFooter(`Requested by ${message.author.tag}`)
                 .setTimestamp()
-                .setColor(config.color);
+                .setColor(color);
               return message.reply({ embeds: [prefixEmbed] });
             }
           })
@@ -70,7 +69,7 @@ module.exports = {
               .setDescription(`The process has been canceled.`)
               .setFooter(`Requested by ${message.author.tag}`)
               .setTimestamp()
-              .setColor(config.color);
+              .setColor(color);
             return message.reply({ embeds: [prefixEmbed] });
           });
       });
@@ -89,7 +88,7 @@ module.exports = {
             .setDescription(`Your prefix has been updated to to **${res}**`)
             .setFooter(`Requested by ${message.author.tag}`)
             .setTimestamp()
-            .setColor(config.color);
+            .setColor(color);
         } else {
           data = new prefixSchema({
             Guild: message.guild.id,
@@ -101,7 +100,7 @@ module.exports = {
             .setDescription(`Prefix is now set to **${res}**`)
             .setFooter(`Requested by ${message.author.tag}`)
             .setTimestamp()
-            .setColor(config.color);
+            .setColor(color);
           return message.reply(prefixEmbed);
         }
       });
