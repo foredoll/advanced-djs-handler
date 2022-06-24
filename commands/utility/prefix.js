@@ -1,5 +1,6 @@
 const prefixSchema = require("../../models/prefix");
 const { MessageEmbed } = require("discord.js");
+const { prefix } = require("../../config.json");
 module.exports = {
   name: "prefix",
   aliases: [],
@@ -45,7 +46,7 @@ module.exports = {
               const prefixEmbed = new MessageEmbed()
                 .setTitle("Prefix deleted")
                 .setDescription(
-                  `I have deleted the prefix.\nThe prefix is now ${config.prefix}`
+                  `I have deleted the prefix.\nThe prefix is now ${prefix}`
                 )
                 .setFooter(`Requested by ${message.author.tag}`)
                 .setTimestamp()
