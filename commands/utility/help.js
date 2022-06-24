@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const config = require("../../config.json");
 
 module.exports = {
   name: "help",
@@ -15,7 +14,7 @@ module.exports = {
   nsfw: false,
   cooldown: "2s",
   category: "⚙️ Utility",
-  async execute(client, message, args, prefix) {
+  async execute(client, message, args, prefix, color) {
     if (args[0]) {
       const command = await client.commands.get(args[0]);
 
@@ -36,7 +35,7 @@ module.exports = {
         .addField("**NSFW**", command.nsfw || "false", true)
         .addField("**Disabled**", command.disabled || "false", true)
         .setTimestamp()
-        .setColor(config.color)
+        .setColor(color)
         .setFooter(`Requested by ${message.author.tag}`);
 
       return message.channel.send(embed);
