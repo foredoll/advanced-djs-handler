@@ -27,7 +27,7 @@ module.exports = {
           .setFooter(`Requested by ${message.author.tag}`)
           .setDescription(`${args[0]} is not a valid command.`);
 
-        return message.reply(err);
+        client.embedReply("Unknown Command"," ", `${args[0]} is not a valid command.`)
       }
 
       let embed = new MessageEmbed()
