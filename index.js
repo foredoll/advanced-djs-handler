@@ -91,6 +91,18 @@ client.on("message", async (message) => {
       return message.reply(prefixEmbed);
     }
   }
+  
+  client.embedReply = function(title,author,desc) {
+    if(!title || !author || !desc) {
+      return throw new Error("Missing Params")
+    }
+    return message.reply(new Discord.MessageEmbed().setTitle(title).setColor(config.color).setTimestamp().setFooter(`Requested by ${message.author.tag}`).setAuthor(author).setDescription(desc))
+  }
+  
+  client.reply = function(txt) {
+    if(!txt) return throw new Error("Missing Params")
+    return message.reply(txt)
+  }
 
   if (!message.content.startsWith(p) || message.author.bot) return;
 
@@ -175,9 +187,10 @@ client.on("message", async (message) => {
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
   let prefix = p;
+  let color = config.color;
 
   try {
-    command.execute(client, message, args, prefix);
+    command.execute(client, message, args, prefix, color);
   } catch (error) {
     console.error(error);
     message.reply(
