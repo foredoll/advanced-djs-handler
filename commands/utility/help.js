@@ -20,14 +20,7 @@ module.exports = {
       const command = await client.commands.get(args[0]);
 
       if (!command) {
-        const err = new MessageEmbed()
-          .setColor(config.color)
-          .setTimestamp()
-          .setTitle("Unknown command")
-          .setFooter(`Requested by ${message.author.tag}`)
-          .setDescription(`${args[0]} is not a valid command.`);
-
-        client.embedReply("Unknown Command"," ", `${args[0]} is not a valid command.`)
+        return client.embedReply("Unknown Command"," ", `${args[0]} is not a valid command.`)
       }
 
       let embed = new MessageEmbed()
